@@ -1,0 +1,98 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["student", "teacher"] },
+        "instituteId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Classroom": {
+      "title": "Classroom",
+      "description": "A virtual classroom created by a teacher",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "code": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "instituteId": { "type": "string" },
+        "branch": { "type": "string" },
+        "semester": { "type": "string" },
+        "students": { "type": "array" }
+      },
+      "required": ["name", "code", "teacherId"]
+    },
+    "Institute": {
+      "title": "Institute",
+      "description": "Educational institution",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "adminId": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "Subject": {
+      "title": "Subject",
+      "description": "Educational subject for organizing notes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "userId": { "type": "string" },
+        "color": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "userId"]
+    },
+    "Lecture": {
+      "title": "Lecture",
+      "description": "A recorded lecture session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "subjectId": { "type": "string" },
+        "userId": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["recording", "processing", "completed"] },
+        "transcript": { "type": "string" },
+        "summary": { "type": "string" },
+        "mindmapCode": { "type": "string" },
+        "diagramCode": { "type": "string" }
+      },
+      "required": ["title", "userId", "date", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/classrooms/{classroomId}": {
+      "schema": "Classroom",
+      "description": "Virtual classrooms"
+    },
+    "/institutes/{instituteId}": {
+      "schema": "Institute",
+      "description": "Institutions"
+    },
+    "/subjects/{subjectId}": {
+      "schema": "Subject",
+      "description": "User subjects"
+    },
+    "/lectures/{lectureId}": {
+      "schema": "Lecture",
+      "description": "Recorded lectures and their AI-generated notes"
+    }
+  }
+}

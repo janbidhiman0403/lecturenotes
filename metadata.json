@@ -1,0 +1,6 @@
+{
+  "name": "LectureNotes AI",
+  "description": "Transform audio lectures into organized notes with AI-powered summaries, mindmaps, and diagrams. Organize by subject and connect with classroom devices.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["audio_transcription", "ai_summaries", "mindmaps", "diagrams"]
+}
